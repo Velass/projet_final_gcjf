@@ -24,6 +24,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @lombok.Getter
@@ -57,6 +58,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column(nullable = false)
+    @Size(min = 3, message = "Le mot de passe doit contenir au moins 3 caractères")
     private String password;
 
     @Enumerated(EnumType.STRING)

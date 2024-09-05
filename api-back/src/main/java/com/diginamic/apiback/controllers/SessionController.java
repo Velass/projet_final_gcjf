@@ -14,6 +14,8 @@ import com.diginamic.apiback.dto.LoginRequestDTO;
 import com.diginamic.apiback.models.User;
 import com.diginamic.apiback.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class SessionController {
@@ -31,7 +33,7 @@ public class SessionController {
      * @return un cookie JWT
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestDTO userLoginDTO) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDTO userLoginDTO) {
         // Authentification
         User user = userService.authenticateUser(userLoginDTO.getEmail(), userLoginDTO.getPassword());
         if (user != null) {
